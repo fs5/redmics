@@ -66,7 +66,7 @@ module Redmics
             project_condition = ["#{Project.table_name}.id IN (?)", ids]
           else
             # all public projects
-            project_condition = [Project.visible_by(@user)]
+            project_condition = [Project.visible_condition(@user)]
           end
         elsif @user.active?
           if @project
@@ -78,7 +78,7 @@ module Redmics
             project_condition = ["#{Project.table_name}.id IN (?)", ids]
           else
             # all user-visible and public projects
-            project_condition = [Project.visible_by(@user)]
+            project_condition = [Project.visible_condition(@user)]
           end
         else
           raise 'User not active.'
