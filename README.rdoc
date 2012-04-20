@@ -8,7 +8,7 @@ GPL v2
 
 == Requirements
 
-This plug-in requires icalendar >= 1.1.6 (http://icalendar.rubyforge.org/).
+This plug-in requires icalendar 1.1.6 (http://icalendar.rubyforge.org/).
 
 == Implementation details
 
