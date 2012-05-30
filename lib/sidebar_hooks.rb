@@ -58,5 +58,4 @@ class SidebarHooks < Redmine::Hook::ViewListener
     }
     return result
   end
-
 end

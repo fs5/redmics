@@ -21,12 +21,13 @@ require 'sidebar_hooks'
 require 'userprefs_hooks'
 require 'model_patches'
 require 'controller_patches'
+require 'my_controller_patches'
 
 Redmine::Plugin.register :redmine_ics_export do
   name 'redmine ics export plugin (aka redmics)'
   author 'Frank Schwarz'
   description 'ICalendar view of issue- and version-deadlines'
-  version '1.3.1'
+  version '2.0.0.dev'
   url 'http://code.google.com/p/redmics/'
   author_url 'http://www.buschmais.de/author/frank/'
   settings(
@@ -36,5 +37,5 @@ Redmine::Plugin.register :redmine_ics_export do
       :redmics_icsrender_summary => :status,
       :redmics_icsrender_description => :full,
     },
-    :partial => 'redmics_settings')
+    :partial => 'settings/redmics_settings')
 end
