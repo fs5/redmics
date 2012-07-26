@@ -16,46 +16,5 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class SidebarHooks < Redmine::Hook::ViewListener
-  
-  def view_issues_sidebar_planning_bottom(context = { })
-    project = context[:project]
-    user = User.current
-    
-    return '' unless user.allowed_to?(:view_calendar, project, :global => true)
-    
-    result = "<h3>%s</h3>\n" % l(:label_icalendar_header)
-    
-    label = {
-      :my  => l(:label_issues_mine),
-      :assigned => l(:label_issues_assigned),
-      :all => l(:label_issues_all)
-    }
-    label.delete(:my) if user.anonymous?
-    label_open = l(:label_issues_open_only)
-    label.keys.sort_by {|sym| sym.to_s}.each {|type|
-      link_all  = link_to(label[type], 
-        {
-          :controller => 'i_calendar',
-          :assignment => type,
-          :action => 'index', 
-          :project_id => project, 
-          :key => User.current.rss_key, 
-          :format => 'ics'
-        },
-        :title => l(:toolip_icalendar_link))
-      link_open = link_to(label_open,
-        {
-          :controller => 'i_calendar',
-          :assignment => type,
-          :status => 'open', 
-          :action => 'index', 
-          :project_id => project, 
-          :key => User.current.rss_key, 
-          :format => 'ics'
-        },
-        :title => l(:toolip_icalendar_link))
-      result += "#{link_all} (#{link_open})<br/>\n";
-    }
-    return result
-  end
+    render_on :view_issues_sidebar_planning_bottom, :partial => 'sidebar/calendars'
 end
