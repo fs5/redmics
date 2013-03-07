@@ -254,7 +254,7 @@ module Redmics
 
     def create_issue_vevent_start_and_end_date(issue)
       start_date, due_date = issue_period(issue)
-      if start_date.nil? || due_date.nil?
+      if start_date.nil? && due_date.nil?
         return []
       elsif start_date == due_date
         event = Icalendar::Event.new
@@ -356,7 +356,7 @@ module Redmics
 
     def create_version_vevent_start_and_end_date(version)
       start_date, due_date = version_period(version)
-      if start_date.nil? || due_date.nil?
+      if start_date.nil? && due_date.nil?
         return []
       elsif start_date == due_date
         event = Icalendar::Event.new
